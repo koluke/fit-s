@@ -1,5 +1,7 @@
+var Promise = require('promise');
+
 var pr = new Promise(function(resolve, reject) {
-	window.setTimeout(function() {
+	setTimeout(function() {
 		if (Math.random() < 0.5) {
 			resolve(new Date());
 		}
