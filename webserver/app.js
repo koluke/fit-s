@@ -50,6 +50,10 @@ app.get('/user/:id', function(req, res) {
 		});
 	});
 
+	pr.catch(function(err) {
+		console.log('promise is rejected, unable to write to file', err);
+		res.send('<p>Error processing promise for ' + req.params.id + '.</p>')
+	});
 });
 
 
