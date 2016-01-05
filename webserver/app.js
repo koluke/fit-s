@@ -1,6 +1,7 @@
 var express = require('express')
 	, fs = require('fs')
 	, path = require('path')
+	, Promise = require('promise')
 	;
 
 var app = express();
@@ -13,6 +14,17 @@ app.get('/user/:id', function(req, res) {
 	3. Return '<p>{{current path}}</p><p>{{contents of the file}}</p>'
 */
 	console.log('request triggered at %s', req.params.id);
+	var pr = new Promise(function(resolve, reject) {
+		setTimeout(function() {
+			if (Math.random() < 0.5) {
+				resolve(new Date());
+			}
+			else {
+				reject('error');
+			}
+		}, 2000);	
+
+	});
 	fs.writeFile(path.resolve(__dirname,'tmp/',req.params.id), 
 		(new Date()).toString(), 'utf8', 
 		function(err) {
