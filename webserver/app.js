@@ -25,6 +25,9 @@ app.get('/user/:id', function(req, res) {
 		}, 2000);	
 
 	});
+
+	pr.then(function(data) {
+	console.log('promise is resolved', data);
 	fs.writeFile(path.resolve(__dirname,'tmp/',req.params.id), 
 		(new Date()).toString(), 'utf8', 
 		function(err) {
@@ -42,8 +45,9 @@ app.get('/user/:id', function(req, res) {
 					res.send('<p>'+__dirname + '</p>'+
 						'<p>'+data+'</p>'
 					);
-			}
+				}
 			);
+		});
 	});
 
 });
