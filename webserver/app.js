@@ -12,6 +12,7 @@ app.get('/user/:id', function(req, res) {
 	2. Write the current time on that file
 	3. Return '<p>{{current path}}</p><p>{{contents of the file}}</p>'
 */
+	console.log('request triggered at %s', req.params.id);
 	fs.writeFile(path.resolve(__dirname,'tmp/',req.params.id), 
 		(new Date()).toString(), 'utf8', 
 		function(err) {
